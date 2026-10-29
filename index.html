@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertiBloom | Vertical Farming</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7faf5;
+            color: #24382a;
+            line-height: 1.6;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px #00000010;
+        }
+
+        /* .logo {
+            color: #267345;
+            font-size: 25px;
+            font-weight: bold;
+        } */
+
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #267345;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 80%;
+            height: 80px;
+            object-fit: contain;
+        }
+
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #24382a;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #39965b;
+        }
+        .hero {
+            min-height: 709px;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            color: white;
+            background:
+                linear-gradient(90deg, #102d20e8, #102d2050),
+                url("https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1600&q=85");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 60px);
+            line-height: 1.15;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #76c893;
+            color: #123822;
+            padding: 13px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+        /* Common Sections */
+        section {
+            padding: 75px 8%;
+            scroll-margin-top: 75px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            color: #267345;
+        }
+
+        .section-title p {
+            color: #68766b;
+            margin-top: 8px;
+        }
+
+        /* About */
+        #about{
+            min-height: 709px;  
+        }
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .about h2 {
+            font-size: 32px;
+            color: #267345;
+            margin-bottom: 15px;
+        }
+
+        /* Cards */
+        #cards{
+            min-height: 755px;
+
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px #0000000c;
+            transition: transform 0.3s;
+            /* border: 2px solid black; */
+            border-radius: 14px;
+            box-shadow: 0 2px 20px ;
+            
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card h3 {
+            color: #267345;
+            margin-bottom: 10px;
+        }
+
+        /* Benefits */
+
+        #methods {
+            min-height: 709px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #benefits {
+            min-height: 709px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .benefits {
+            background: #173d29;
+        }
+
+        .benefits .section-title h2 {
+            color: #ffffff;
+        }
+
+        .benefits .section-title p {
+            color: #d1e3d5;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .benefit {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 12px;
+            border: 1px solid #d5e5d9;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+            border-color: #76c893;
+        }
+
+        .benefit .emoji {
+            font-size: 35px;
+        }
+
+        .benefit h3 {
+            margin: 12px 0 8px;
+            color: #267345;
+        }
+
+        /* Contact */
+        .contact-box {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #0000000c;
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border: 1px solid #ccd8cc;
+            border-radius: 6px;
+            font: inherit;
+        }
+
+        .contact-box button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        footer {
+            background: #173d29;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 800px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav ul {
+                gap: 10px;
+                font-size: 13px;
+            }
+
+            .hero {
+                min-height: 460px;
+                padding: 45px 6%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 55px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="VertiBloom Logo">
+            <span>VertiBloom</span>
+        </div>
+
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <p>🌿 SMART FARMING FOR A BETTER FUTURE</p>
+
+            <h1>Grow More in Less Space</h1>
+
+            <p>
+                Discover vertical farming, an innovative way to
+                grow fresh food in vertically stacked layers using
+                modern technology and sustainable methods.
+            </p>
+
+            <a href="#about" class="btn">Explore More →</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div>
+            <img
+                src="img1.jpeg"
+                alt="Green plants growing in a modern farm">
+        </div>
+
+        <div>
+            <h2>What is Vertical Farming?</h2>
+
+            <p>
+                Vertical farming is a modern agricultural technique
+                in which plants are grown in vertically stacked
+                layers instead of traditional horizontal fields.
+            </p>
+
+            <br>
+
+            <p>
+                It can be practised inside buildings, greenhouses
+                and specially designed farming facilities.
+                Technologies such as LED lights, hydroponics and
+                automated monitoring help manage plant growth.
+            </p>
+
+            <br>
+
+            <a href="#methods" class="btn">Discover Methods</a>
+        </div>
+    </section>
+
+    <!-- Farming Methods -->
+    <section id="methods">
+        <div class="section-title">
+            <h2>Vertical Farming Methods</h2>
+            <p>Explore three modern ways of growing plants.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <img
+                    src="img2.jpeg"
+                    alt="Plants growing in water-based system">
+
+                <div class="card-content">
+                    <h3>Hydroponics</h3>
+                    <p>
+                        Plants grow without soil, using water
+                        containing the essential nutrients they need.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img
+                    src="img3.jpeg"
+                    alt="Healthy green plants">
+
+                <div class="card-content">
+                    <h3>Aeroponics</h3>
+                    <p>
+                        Plant roots receive water and nutrients
+                        through a fine mist in a controlled system.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img
+                    src="img4.jpeg"
+                    alt="Plants growing in containers">
+
+                <div class="card-content">
+                    <h3>Container Farming</h3>
+                    <p>
+                        Specially designed containers provide a
+                        controlled environment for growing crops
+                        in limited spaces.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="section-title">
+            <h2>Why Choose Vertical Farming?</h2>
+            <p>A modern approach to some agricultural challenges.</p>
+        </div>
+
+        <div class="benefit-grid">
+
+            <div class="benefit">
+                <div class="emoji">💧</div>
+                <h3>Water Efficiency</h3>
+                <p>Recirculating systems can reduce water use.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="emoji">🏙️</div>
+                <h3>Less Land</h3>
+                <p>Grow crops in stacked layers in limited spaces.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="emoji">🥬</div>
+                <h3>Fresh Produce</h3>
+                <p>Grow suitable crops closer to urban consumers.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="emoji">🌦️</div>
+                <h3>Controlled Climate</h3>
+                <p>Manage light, temperature and humidity indoors.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-title">
+            <h2>Get in Touch</h2>
+            <p>Interested in sustainable farming? Send us a message.</p>
+        </div>
+
+        <form class="contact-box" onsubmit="showMessage(event)">
+            <input type="text" placeholder="Your Name" required>
+
+            <input type="email" placeholder="Your Email" required>
+
+            <textarea rows="5"
+                placeholder="Write your message..."
+                required></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+
+            <p id="message" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>🌱 VertiBloom</h3>
+        <p>Growing a greener and more sustainable future.</p>
+        <p>© 2026 VertiBloom | Vertical Farming Project</p>
+    </footer>
+
+    <script>
+        function showMessage(event) {
+            event.preventDefault();
+
+            document.getElementById("message").textContent =
+                "Thank you! Your demo form was submitted.";
+
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
